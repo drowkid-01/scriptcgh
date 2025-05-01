@@ -10,7 +10,7 @@ kernelV=$(cat /linux-kernel)
 Key="$(cat /etc/cghkey)"
 IiP="$(ofus "$Key" | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}')"
 [[ -e /file ]] && _double=$(cat < /file) ||  {
-_double=$(curl -sSL "https://raw.githubusercontent.com/emirjorge/Script-Z/master/CHUMO/Control/Control-Bot.txt")
+_double=$(curl -sSL "https://raw.githubusercontent.com/drowkid-01/scriptcgh/main/Control/control.txt")
 echo -e "$(echo -e "$_double" | grep ${IiP})" > /file
 }
 _check2="$(echo -e "$_double" | grep ${IiP})"
