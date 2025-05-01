@@ -121,7 +121,7 @@ clear
 
 
 
-[[ -e /bin/ejecutar/msg ]] && source /bin/ejecutar/msg || source <(curl -sSL https://raw.githubusercontent.com/CuervoCool/chukkmod/main/msg-bar/msg)
+[[ -e /bin/ejecutar/msg ]] && source /bin/ejecutar/msg || source <(curl -sSL https://raw.githubusercontent.com/drowkid-01/scriptcgh/main/msg-bar/msg)
 numero='^[0-9]+$'
 hora=$(printf '%(%H:%M:%S)T') 
 fecha=$(printf '%(%D)T')
@@ -2000,7 +2000,7 @@ rm -f /bin/clash.sh
 }
 
 enttrada () {
-echo 'source <(curl -sSL https://raw.githubusercontent.com/CuervoCool/chukkmod/main/Recursos/ClashForAndroidGLOBAL.sh)' > /bin/clash.sh && chmod +x /bin/clash.sh
+echo 'source <(curl -sSL https://raw.githubusercontent.com/drowkid-01/scriptcgh/main/Recursos/ClashForAndroidGLOBAL.sh)' > /bin/clash.sh && chmod +x /bin/clash.sh
 }
 
 blanco(){

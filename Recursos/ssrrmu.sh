@@ -1,8 +1,8 @@
 #!/bin/bash
 echo ""
-wget -q -O /tmp/ssr https://raw.githubusercontent.com/CuervoCool/chukkmod/main/msg-bar/msg 
+wget -q -O /tmp/ssr https://raw.githubusercontent.com/drowkid-01/scriptcgh/main/msg-bar/msg 
 cat /tmp/ssr > /tmp/ssrrmu.sh
-wget -q -O /tmp/ssr https://raw.githubusercontent.com/CuervoCool/chukkmod/main/Recursos/menu_inst/C-SSR.sh
+wget -q -O /tmp/ssr https://raw.githubusercontent.com/drowkid-01/scriptcgh/main/Recursos/menu_inst/C-SSR.sh
 cat /tmp/ssr >> /tmp/ssrrmu.sh
 #curl  https://www.dropbox.com/s/re3lbbkxro23h4g/C-SSR.sh >> 
 sed -i "s;VPS•MX;ChuKK-SCRIPT;g" /tmp/ssrrmu.sh

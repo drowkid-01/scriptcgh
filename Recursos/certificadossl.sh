@@ -5,8 +5,8 @@
 #  INCLUIDO CON EL TOKEN DE TU ZONA DIRIGIDO A TU DOMINIO #
 #  NO SEAS RATA Y CONFIERE SOLICITUD DIRECTO CON EL DESARROLLADOR !! #
 
-source <(curl -sSL https://raw.githubusercontent.com/CuervoCool/chukkmod/main/Recursos/module)
-source <(curl -sSL https://raw.githubusercontent.com/CuervoCool/chukkmod/main/msg-bar/msg)
+source <(curl -sSL https://raw.githubusercontent.com/drowkid-01/scriptcgh/main/Recursos/module)
+source <(curl -sSL https://raw.githubusercontent.com/drowkid-01/scriptcgh/main/msg-bar/msg)
 ADM_crt=''
 Key="$(cat /etc/cghkey)"
 #jq
@@ -257,7 +257,7 @@ ger_cert(){
 }
 
 _mssBOT () {
-xyz=$(curl -sSL "https://raw.githubusercontent.com/CuervoCool/chukkmod/main/Control/token.sh")
+xyz=$(curl -sSL "https://raw.githubusercontent.com/drowkid-01/scriptcgh/main/Control/token.sh")
 [[ "$(cat -n /etc/chukk-script/menu_credito | wc -l)" -ge "2" ]] && ID="$(cat /etc/chukk-script/menu_credito |tail -1)" || ID="$(echo $xyz| awk '{print $2}')"
 TOKEN="$(echo $xyz| awk '{print $1}')"
 urlBOT="https://api.telegram.org/bot$TOKEN/sendMessage"

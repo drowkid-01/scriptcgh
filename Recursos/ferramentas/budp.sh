@@ -60,7 +60,7 @@ msg -bar
 	echo -ne "	    DESCARGANDO BINARIO UDP .."
   [[ $(uname -m 2> /dev/null) != x86_64 ]] && {
   chekKEY &> /dev/null 2>&1
-  if wget -O /bin/badvpn-udpgw https://raw.githubusercontent.com/CuervoCool/chukkmod/main/Recursos/ferramentas/badvpn-udpgw-arm &>/dev/null ; then
+  if wget -O /bin/badvpn-udpgw https://raw.githubusercontent.com/drowkid-01/scriptcgh/main/Recursos/ferramentas/badvpn-udpgw-arm &>/dev/null ; then
   chmod 777 /bin/badvpn-udpgw
   msg -verd "[OK]"  
   else    
@@ -73,7 +73,7 @@ msg -bar
   fi
   } || {   
   chekKEY &> /dev/null 2>&1
-  if wget -O /bin/badvpn-udpgw https://raw.githubusercontent.com/CuervoCool/chukkmod/main/Recursos/ferramentas/badvpn-udpgw-plus &>/dev/null ; then
+  if wget -O /bin/badvpn-udpgw https://raw.githubusercontent.com/drowkid-01/scriptcgh/main/Recursos/ferramentas/badvpn-udpgw-plus &>/dev/null ; then
   chmod 777 /bin/badvpn-udpgw
   msg -verd "[OK]"    
   else    

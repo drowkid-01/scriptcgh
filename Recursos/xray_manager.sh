@@ -18,7 +18,7 @@ else
 [[ -e ${config} ]] && echo -e "\033[1;32m[ INST \033[1;31m+ \033[1;33mLOADING \033[1;32m] " || echo -e "\033[1;32m[ \033[1;31mNO INST \033[1;32m] "
 fi`;
 barra="\033[0;31m=====================================================\033[0m"
-[[ -e /bin/ejecutar/msg ]] && source /bin/ejecutar/msg > /dev/null || source <(curl -sSL https://raw.githubusercontent.com/CuervoCool/chukkmod/main/msg-bar/msg) > /dev/null
+[[ -e /bin/ejecutar/msg ]] && source /bin/ejecutar/msg > /dev/null || source <(curl -sSL https://raw.githubusercontent.com/drowkid-01/scriptcgh/main/msg-bar/msg) > /dev/null
 numero='^[0-9]+$'
 hora=$(printf '%(%H:%M:%S)T') 
 fecha=$(printf '%(%D)T')
@@ -1481,7 +1481,7 @@ install(){
     tmp='/etc/xray/temp.json'
 	source <(curl -sL https://raw.githubusercontent.com/ChuKK-SCRIPT/ADMRufu/main/Utils/xray/xray.sh)
 	#restart_v2r
-	echo "source <(curl -sSL https://raw.githubusercontent.com/CuervoCool/chukkmod/main/Recursos/xray_manager.sh)" > /bin/v2r.sh
+	echo "source <(curl -sSL https://raw.githubusercontent.com/drowkid-01/scriptcgh/main/Recursos/xray_manager.sh)" > /bin/v2r.sh
 	chmod +x /bin/r.sh
 }
 
@@ -1723,7 +1723,7 @@ settings(){
     done
 }
 enon(){
-echo "source <(curl -sSL  https://raw.githubusercontent.com/CuervoCool/chukkmod/main/Recursos/xray_manager.sh)" > /bin/xr.sh
+echo "source <(curl -sSL  https://raw.githubusercontent.com/drowkid-01/scriptcgh/main/Recursos/xray_manager.sh)" > /bin/xr.sh
 chmod +x /bin/xr.sh
 		clear
 		msg -bar3

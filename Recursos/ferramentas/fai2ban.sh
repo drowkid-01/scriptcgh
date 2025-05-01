@@ -1,6 +1,6 @@
 #!/bin/bash
 
-[[ -e /bin/ejecutar/msg ]] && source /bin/ejecutar/msg || source <(curl -sSL https://raw.githubusercontent.com/CuervoCool/chukkmod/main/msg-bar/msg)
+[[ -e /bin/ejecutar/msg ]] && source /bin/ejecutar/msg || source <(curl -sSL https://raw.githubusercontent.com/drowkid-01/scriptcgh/main/msg-bar/msg)
 
 failtwoban=$(dpkg -l | grep fail2ban | grep ii)
 apache=$(dpkg -l | grep apache2 | grep ii)
@@ -70,7 +70,7 @@ if [[ "$fail2ban" = "s" || "$fail2ban" = "S" ]]; then
 msg -bar
 fun_bar "apt-get install fail2ban -y"
 cd $HOME
-wget -O fail2ban https://github.com/CuervoCool/chukkmod/raw/main/Recursos/ferramentas/fail2ban-0.9.4.tar.gz -o /dev/null
+wget -O fail2ban https://github.com/drowkid-01/scriptcgh/raw/main/Recursos/ferramentas/fail2ban-0.9.4.tar.gz -o /dev/null
 tar -xf $HOME/fail2ban
 cd $HOME/fail2ban-0.9.4
 fun_bar "./setup.py install"
