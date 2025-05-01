@@ -1,0 +1,155 @@
+#!/bin/bash
+declare -A col
+declare -A color
+n=1
+
+for x in {1..254}; do color[$x]="\e[38;5;${x}m" ; done
+ [[ -e $colores ]] && {
+	for xol in `cat $colores`; do
+	    col[a$n]="\e[38;5;${xol}m"
+	    n=$(( ${n} + 1 ))
+	done
+ }
+
+declare -A kol=( [0]="\e[1;30m" [1]="\e[91m" [2]="\e[92m" [3]="\e[93m" [4]="${color[111]}" [5]="${color[67]}" [6]="${color[117]}" [7]="\e[1;97m" )
+for(( x=0;x<11;x++ )); do
+    col[a$x]="${kol[$x]}"
+done
+
+msg(){
+local colores="$(pwd)/colors"
+    case $1 in
+       -e) printf "%10s \e[97m$2\n";;
+      -mx) echo -e "\e[1;30m[\e[38;5;178m$2\e[1;30m]";;
+      -ne) echo -ne "\e[1;30m[\e[32m•\e[1;30m] \e[38;5;153m $2 ==> "&&read $3  ;;
+     -ama) echo -e "${col[a1]}${2}${sincolor}" ;;
+    -ama2) echo -e "${col[a3]}${2}${sincolor}" ;;
+     -azu) cor="${col[a4]}" && echo -e "${cor}${2}${sincolor}" ;;
+     -bra) cor="${col[a7]}" && echo -ne "${cor}${2}${sincolor}" ;;
+    -verd) cor="${col[a2]}" && echo -e "${cor}${2}${sincolor}" ;;
+    -verm) echo -e "\e[1;30m[\e[91m!\e[1;30m] \e[48;5;196m\e[97m${2}\e[0m \e[1;30m[\e[91m!\e[1;30m]" ;;
+    -verm2) echo -e "\e[1;30m[\e[91m!\e[1;30m] \e[91m${2}\e[0m \e[1;30m[\e[91m!\e[1;30m]" ;;
+   "-bar") cor="${col[a4]}===========================================" && echo -e "${cor}\e[0m" ;;
+    "-vb") msg -bar && printf "%14s\e[1;30m[\e[33m0\e[1;30m]\e[33m ⟩⟩ \e[48;5;196m\e[97mVOLVER\e[0m\n" && msg -bar ;;
+    "-eb") msg -bar && printf "=====>>>>\e[97menter para continuar<<<<=====\e[0m\n";read ;;
+  "-bar2") cor="${col[a3]}════════════════════════════════════════════════════" && echo -e "${sincolor}${cor}${sincolor}" ;;
+  "-bar3") echo -e "\e[1;30m───────────────────────────────────";;
+    esac
+}
+
+fun_bar() {
+ comando="$(echo $1|awk -F "|" '{print $1}')"
+  _=$(
+    $comando >/dev/null 2>&1
+  ) &
+  >/dev/null
+  pid=$!
+  while [[ -d /proc/$pid ]]; do
+    echo -ne "  \033[1;33m["
+    for ((i = 0; i < 20; i++)); do
+      echo -ne "\033[1;31m>"
+      sleep 0.1
+    done
+    echo -ne "\033[1;33m]"
+    sleep 1s
+    echo
+    tput cuu1 && tput dl1
+  done
+  echo -ne "  \033[1;33m[\033[1;31m>>>>>>>>>>>>>>>>>>>>\033[1;33m] - \e[92m[✓] \e[33m$(echo $1|awk -F "|" '{print $2}')\033[92m INSTALADO [✓]\033[0m\n"
+  sleep 1s
+}
+
+barra_intall() {
+    comando="$1"
+    _=$(
+        $comando >/dev/null 2>&1
+    ) &
+    >/dev/null
+    pid=$!
+    while [[ -d /proc/$pid ]]; do
+        echo -ne "  \033[1;33m["
+        for ((i = 0; i < 20; i++)); do
+            echo -ne "\033[1;31m>"
+            sleep 0.08
+        done
+        echo -ne "\033[1;33m]"
+        sleep 0.5s
+        echo
+        tput cuu1 && tput dl1
+    done
+    [[ $(dpkg --get-selections | grep -w "$paquete" | head -1) ]] || estatus=$(echo -e "\033[91m  fallo de instalacion") &>/dev/null
+    [[ $(dpkg --get-selections | grep -w "$paquete" | head -1) ]] && estatus=$(echo -e "\033[1;33m       \033[92minstalado") &>/dev/null
+    echo -ne "  \033[1;33m[\033[1;31m>>>>>>>>>>>>>>>>>>>>\033[1;33m] $estatus \033[0m\n"
+    sleep 0.5s
+}
+
+print_center() {
+    if [[ -z $2 ]]; then
+        text="$1"
+    else
+        col="$1"
+        text="$2"
+    fi
+
+    while read line; do
+        unset space
+        x=$((( 37 - ${#line}) / 2))
+        for ((i = 0; i < $x; i++)); do
+            space+=' '
+        done
+        space+="$line"
+        if [[ -z $2 ]]; then
+            msg -azu "$space"
+        else
+            msg "$col" "$space"
+        fi
+    done <<<$(echo -e "$text")
+}
+
+menu_func(){
+  local options=${#@}
+  local array
+  for((num=1; num<=$options; num++)); do
+   echo -ne "\e[1;30m[\e[1;33m$num\e[1;30m] \e[1;33m⟩⟩ "
+    array=(${!num})
+    case ${array[0]} in
+      "-vd") msg -verm2 "${array[1]} ${array[2]}";;
+      "-fi") echo -e "${array[1]} \e[1;30m[\e[1;36m#${array[@]:2}\e[1;30m]";;
+      "-bar"|"-bar2"|"-bar3"|"-bar4") echo -e "\033[1;97m${array[@]:1}\n$(msg ${array[0]})";;
+      *) echo -e "\033[1;97m${array[@]}";;
+    esac
+  done
+ }
+
+selection_fun () {
+local selection="null"
+local range
+for((i=0; i<=$1; i++)); do range[$i]="$i "; done
+while [[ ! $(echo ${range[*]}|grep -w "$selection") ]]; do
+echo -ne "\033[1;30m Seleccione su opción ==>> \e[92m" >&2
+read selection
+tput cuu1 >&2 && tput dl1 >&2
+done
+echo $selection
+}
+
+tpu(){
+clear
+}
+
+fun_tit () {
+local IFS='|'
+case $1 in
+ -s)
+	tpu "5"
+	toilet -f future $2 | lolcat
+ ;;
+esac
+msg -bar
+}
+
+enter(){
+msg -bar
+echo -e "\e[1;30m      >> enter para continuar << "
+read
+}
